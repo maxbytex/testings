@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "index.ts",
   "private": true,
-  "type": "commonjs",
+ 
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/index.ts | pino-pretty",
     "build": "tsup",
