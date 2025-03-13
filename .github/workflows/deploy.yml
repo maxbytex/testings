@@ -35,7 +35,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "max-testings-94"
-          entrypoint: "index.ts"
-          root: "src"
+          entrypoint: "src/server.ts"
+          root: ""
           
           
