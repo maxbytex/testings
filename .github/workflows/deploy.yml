@@ -37,8 +37,8 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "max-testings-94"
-          entrypoint: "index.js"
+          project: "max-testings-92"
+          entrypoint: "https://deno.land/std@0.217.0/http/file_server.ts"
           root: "dist"
           
           
