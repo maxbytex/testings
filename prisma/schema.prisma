@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator zod {
+  provider = "prisma-zod-generator"
+}
+
+model providers {
+  id        Int      @id(map: "providres_pkey") @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String @default("")
+  total_regex String @default("")
+  date_regex String @default("")
+  notes_regex String @default("")
+  amount_regex String @default("/[\\d,]+(?:\\.\\d{1,2})?/")
+  email String @default("")
+  body_regex String @default("\\d{1,3}(?:\\.\\d{3})*(?:,\\d{1,2})?\\s?€")
+  billings billings[]
+  specializationId Int
+  specialization specialization @relation(fields: [specializationId], references: [id])
+}
+
+
+model specialization {
+  id        Int      @id(map: "specialization_pkey") @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  providers providers[]
+}
+
+model billings {
+  id         Int      @id(map: "bills_pkey") @default(autoincrement())
+  createdAt  DateTime @default(now())
+  name       String
+  total      Float
+  providerId Int      
+  provider   providers @relation(fields: [providerId], references: [id]) 
+  source     String @default("")
+}
+
+
+model user {
+  id        Int      @id(map: "user_pkey") @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  
+}
